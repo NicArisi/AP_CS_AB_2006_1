@@ -1,11 +1,23 @@
 import java.util.*;
 //https://secure-media.collegeboard.org/apc/_ap06_frq_computer_sc_51650.pdf
-//import java.util.TreeMap;
-//import java.util.Iterator;
-//Map<String, Integer> s1 = new TreeMap<String, Integer>();
-		//Set s2 = s1.keySet();
-	    //Iterator<String> iter = s2.iterator();
 public class Thesaurus {
+	public static void main(String[] args) {
+		Thesaurus words = new Thesaurus();
+		words.addsynonym("excellent", "brilliant");
+		words.addsynonym("excellent", "great");
+		words.addsynonym("excellent", "outstanding");
+		words.addsynonym("excellent", "tremendous");
+		words.addsynonym("Super", "excellent");
+		words.addsynonym("Super", "fantastic");
+		words.addsynonym("Super", "great");
+		words.addsynonym("Super", "wonderful");
+		words.addsynonym("Wonderful", "amazing");
+		words.addsynonym("Wonderful", "brilliant");
+		words.addsynonym("Wonderful", "fantastic");
+		words.addsynonym("Wonderful", "great");
+		words.addsynonym("Wonderful", "magnificent");
+		words.addsynonym("Awesome", "wonderful");
+	}
 	private Map<String, String[]> wordMap;
 	public Thesaurus() {
 		wordMap = new HashMap();
@@ -35,14 +47,30 @@ public class Thesaurus {
 	    while(iter.hasNext()) {
 	    	String iterNext = iter.next();
 	    	String[] OldSyns = wordMap.get(iterNext);
-			String[] NewSyns = new String[wordMap.get(iterNext).length-1];
-			for(int i=0;i<wordMap.get(iterNext).length;i++) {
-				int y=i;
-				if(OldSyns[y].equals(syn)) {
-					y--;
+	    	if(OldSyns.length==1 & OldSyns[0].equals(syn)) {
+	    		String[] NewSyns = new String[0];
+	    		wordMap.replace((String)(Object)iter, NewSyns);
+	    	}else {
+				String[] NewSyns = new String[wordMap.get(iterNext).length-1];
+				int L=0;
+				while(L<wordMap.get(iterNext).length-1) {
+					int y=L;
+					if(OldSyns[y].equals(syn)) {
+						y++;
+					}
+					NewSyns[L]=OldSyns[y];
+					L++;
 				}
-				NewSyns[i]=OldSyns[y];
-			}
+				if(OldSyns[L+1]==syn){
+					wordMap.replace((String)(Object)iter, NewSyns);
+				}
+					//brilliant, great, outstanding, tremendous
+					//brilliant, great, outstanding, tremendous            remove wonderful
+					
+					//excellent, fantastic, great, wonderful
+					//excellent, fantastic, great, wonderful
+	    	}
 	    }
+	    return s2;
 	}
 }
