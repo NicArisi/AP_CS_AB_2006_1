@@ -70,7 +70,9 @@ public class Thesaurus {
 					//excellent, fantastic, great, wonderful
 					//excellent, fantastic, great, wonderful
 	    	}
-	    }
+	    } 
+	    int commit = 1;
 	    return s2;
+	    
 	}
 }
